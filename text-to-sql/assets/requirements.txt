@@ -1,0 +1,10 @@
+# Core dependencies
+python-dotenv>=1.0.0
+openpyxl>=3.0.0
+
+# Database drivers (install as needed)
+# PostgreSQL
+psycopg2-binary>=2.9.0
+
+# MySQL/MariaDB
+mysql-connector-python>=8.0.0

@@ -1,0 +1,29 @@
+# Environment
+.env
+*.env.local
+
+# Output
+output/reports/*
+output/queries/*
+!output/reports/.gitkeep
+!output/queries/.gitkeep
+
+# Database files (usually large)
+database/*.sqlite
+database/*.db
+!database/README.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
