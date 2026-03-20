@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Agent Bootstrap"
+  short_description: "Bootstrap projects with AGENTS.md and local MCPs"
+  default_prompt: "Use $project-agent-bootstrap to scaffold a project with AGENTS.md or CLAUDE.md and project-local MCP servers."

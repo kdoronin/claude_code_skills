@@ -1,0 +1,64 @@
+# Project Coding Rules
+
+## Functional Programming
+
+1. **Pure functions first** — выделяй чистые функции, отделяй побочные эффекты от бизнес-логики.
+2. **No raw loops** — заменяй циклы на `map`/`filter` + `fold`(`reduce`).
+3. **Immutability by default** — минимизируй мутации, предпочитай иммутабельные структуры данных.
+4. **Explicit error handling** — заменяй `null` и исключения на явную обработку в стиле `Option`/`Result`.
+5. **Composition over nesting** — используй композицию функций и пайплайны вместо глубокой вложенности.
+
+## Code Structure
+
+6. **Max 100 lines per file** — максимальный размер одного файла с кодом — 100 строк. Если файл превышает лимит — декомпозируй.
+7. **Folder = module** — каждая папка — это логический модуль с чётко определённой ответственностью.
+8. **Max 10 files per module** — модуль содержит не более 10 файлов на одном уровне вложенности.
+9. **Nested modules allowed** — модуль может содержать вложенные модули (подпапки).
+10. **Min 2 files per module** — если для логической ответственности нужен отдельный модуль-папка, в нём должно быть минимум два файла. Если файл один, не создавай под него отдельную папку — оставь его в родительском модуле.
+11. **Cyclomatic complexity ≤ 5** — цикломатическая сложность любого метода — не более 5.
+
+## Quality & Testing
+
+12. **Useful comments only** — пиши полезные комментарии к коду там, где без них неочевидны намерение, архитектурное решение, ограничение или сложная логика. Не дублируй очевидное поведение кода.
+13. **100% unit-test coverage** — обеспечь полное покрытие кода unit-тестами.
+14. **Backend interfaces tested** — все бэкенд-интерфейсы (API, сервисы, репозитории) должны покрываться unit-тестами.
+15. **Strict typing only** — используй исключительно строгую типизацию. `any`, `unknown` без сужения и неявные типы запрещены.
+16. **Custom linter** — создай кастомный линтер, который автоматически проверяет соблюдение всех перечисленных правил: размер файлов, количество файлов в модуле, цикломатическая сложность, покрытие тестами.
+
+## Operational Safety
+
+17. **No hard delete** — агенту запрещено безвозвратно удалять файлы или папки. Вместо удаления он должен перемещать их в системную корзину (`Trash`/`Recycle Bin`) или безопасный локальный аналог корзины, чтобы их можно было восстановить.
+18. **Git-first workflow** — если агент начинает проект без Git-репозитория, он обязан сразу инициализировать Git, создать базовый `.gitignore`, сделать начальный commit и далее фиксировать каждое значимое изменение отдельным commit'ом. Откаты изменений должны выполняться через Git-историю, а не через ручное перезаписывание файлов.
+19. **UI verification gate** — только для проектов с пользовательским интерфейсом агент обязан прогонять проверку UI через Playwright MCP перед тем, как объявить задачу завершённой. Сообщать, что функциональность готова, можно только после успешной проверки ключевых экранов и основных пользовательских сценариев.
+
+## Dependency Hygiene
+
+20. **Context7 version check** — перед добавлением, обновлением или использованием любого внешнего пакета, библиотеки, фреймворка или CLI-инструмента агент обязан проверить актуальную версию и рекомендованный способ подключения через Context7. Использовать устаревшие или догаданные версии запрещено.
+
+## Tool call transparency
+
+Before calling any tool or executing any command, always explain:
+1. **What the tool does** — a brief description of the tool's purpose and effect.
+2. **What each argument means** — for every parameter being passed, explain its role and why this specific value was chosen.
+
+IMPORTANT: Always write these explanations in the same language the user is currently communicating in. Match the user's language, not the language of the code or command.
+
+Example (English-speaking user):
+
+> Running `grep -rn "TODO" ./src`
+>
+> - `grep` — searches for text patterns in files
+> - `-r` — search recursively through all subdirectories
+> - `-n` — show line numbers in the output
+> - `"TODO"` — the pattern to search for
+> - `./src` — the directory to search in
+
+Example (Russian-speaking user):
+
+> Запускаю `grep -rn "TODO" ./src`
+>
+> - `grep` — ищет текстовые паттерны в файлах
+> - `-r` — рекурсивный поиск по всем подкаталогам
+> - `-n` — показывать номера строк в выводе
+> - `"TODO"` — искомый паттерн
+> - `./src` — каталог для поиска
