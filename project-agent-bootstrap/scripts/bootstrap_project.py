@@ -13,21 +13,16 @@ REQUIRED_MCP_SERVERS = {
         "command": "npx",
         "args": ["-y", "@playwright/mcp@latest"],
     },
-    "context7": {
-        "type": "http",
-        "url": "https://mcp.context7.com/mcp",
-    },
     "shadcn": {
         "command": "npx",
         "args": ["shadcn@latest", "mcp"],
     },
 }
 
-CLAUDE_ENABLED_SERVERS = ["playwright", "context7", "shadcn"]
+CLAUDE_ENABLED_SERVERS = ["playwright", "shadcn"]
 
 CODEX_BLOCKS = {
     "playwright": '[mcp_servers.playwright]\ncommand = "npx"\nargs = ["-y", "@playwright/mcp@latest"]\n',
-    "context7": '[mcp_servers.context7]\nurl = "https://mcp.context7.com/mcp"\n',
     "shadcn": '[mcp_servers.shadcn]\ncommand = "npx"\nargs = ["shadcn@latest", "mcp"]\n',
 }
 

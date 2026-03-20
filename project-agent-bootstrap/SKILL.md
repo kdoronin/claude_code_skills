@@ -1,6 +1,6 @@
 ---
 name: project-agent-bootstrap
-description: Bootstrap new or existing local projects for AI-assisted development by creating an `AGENTS.md` for Codex or a `CLAUDE.md` for Claude Code from the bundled rules template, wiring project-local MCP servers for Playwright, Context7, and shadcn/ui, and initializing Git with a first checkpoint commit when needed. Use whenever the user asks to start a project with agent instructions, scaffold a repo for Codex or Claude Code, add local MCP servers to a project, or standardize an AI-ready project workspace before implementation begins.
+description: Bootstrap new or existing local projects for AI-assisted development by creating an `AGENTS.md` for Codex or a `CLAUDE.md` for Claude Code from the bundled rules template, wiring project-local MCP servers for Playwright and shadcn/ui, and initializing Git with a first checkpoint commit when needed. Use whenever the user asks to start a project with agent instructions, scaffold a repo for Codex or Claude Code, add local MCP servers to a project, or standardize an AI-ready project workspace before implementation begins.
 ---
 
 # Project Agent Bootstrap
@@ -39,8 +39,8 @@ Valid `--agent` values:
 Generate these files:
 
 - `AGENTS.md` or `CLAUDE.md`: copy the bundled template from [references/instruction-template.md](references/instruction-template.md)
-- `.codex/config.toml`: add project-local `playwright`, `context7`, and `shadcn` servers for Codex
-- `.mcp.json`: add project-local `playwright`, `context7`, and `shadcn` servers for Claude Code
+- `.codex/config.toml`: add project-local `playwright` and `shadcn` servers for Codex
+- `.mcp.json`: add project-local `playwright` and `shadcn` servers for Claude Code
 - `.claude/settings.local.json`: enable project MCP servers for Claude Code
 - `.gitignore`: create a minimal bootstrap ignore file when the repo is new
 - `.git`: initialize a Git repository if missing and create an initial commit when possible
@@ -49,7 +49,7 @@ Generate these files:
 
 - Do not hard-delete replaced files. The script moves overwritten instruction files into `.ai-bootstrap-trash/`.
 - Merge existing `.mcp.json`, `.claude/settings.local.json`, and `.codex/config.toml` instead of replacing them wholesale.
-- Keep the package-version rule in the generated instruction file: external package and library versions must be checked through Context7 before use.
+- Keep the package-version rule in the generated instruction file: every external package and library version must be checked on the internet before installation or update.
 - Do not claim UI work is done just because code compiles. The generated instruction file already requires Playwright MCP verification for UI projects.
 
 ## Resources
@@ -59,6 +59,6 @@ Generate these files:
 
 ## Example Prompts
 
-- "Create a new Codex-ready Next.js project here and set up `AGENTS.md` with local Playwright, Context7, and shadcn MCP."
+- "Create a new Codex-ready Next.js project here and set up `AGENTS.md` with local Playwright and shadcn MCP."
 - "Bootstrap this repo for Claude Code with `CLAUDE.md` and project-local MCP servers."
 - "Standardize this existing folder for AI agents before we start building."
