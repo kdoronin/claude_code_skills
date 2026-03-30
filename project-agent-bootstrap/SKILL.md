@@ -30,9 +30,10 @@ Valid `--agent` values:
 
 1. Decide which runtime the project needs: Codex, Claude Code, or both.
 2. Run `scripts/bootstrap_project.py` with the target project root.
-3. Review the generated instruction file and keep the bundled policy intact unless the user explicitly wants changes.
-4. If the project already had local config, keep the merged result. Do not strip user-defined MCP entries.
-5. Continue implementation inside the bootstrapped repo.
+3. **Verify outputs:** Confirm the expected files exist (see Output Contract) and contain correct content — check that instruction files were written, MCP configs merged properly, and Git initialized if applicable. If any file is missing or malformed, re-run with `--agent auto` or fix manually before proceeding.
+4. Review the generated instruction file and keep the bundled policy intact unless the user explicitly wants changes.
+5. If the project already had local config, keep the merged result. Do not strip user-defined MCP entries.
+6. Continue implementation inside the bootstrapped repo.
 
 ## Output Contract
 
